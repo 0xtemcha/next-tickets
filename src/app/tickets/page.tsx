@@ -1,6 +1,12 @@
 import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { initialTickets } from "@/data";
-import { cn } from "@/lib/utils";
 import { ticketPath } from "@/paths";
 
 const CheckIcon = () => (
@@ -10,7 +16,6 @@ const CheckIcon = () => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="w-6 h-6"
   >
     <path
       strokeLinecap="round"
@@ -27,7 +32,6 @@ const DocumentIcon = () => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="size-6"
   >
     <path
       strokeLinecap="round"
@@ -44,7 +48,6 @@ const PencilIcon = () => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="size-6"
   >
     <path
       strokeLinecap="round"
@@ -71,23 +74,26 @@ const TicketsPage = () => {
       </div>
       <div className="flex-1 flex flex-col items-center gap-y-4 animate-fade-from-top">
         {initialTickets.map((ticket) => (
-          <div
-            key={ticket.id}
-            className="w-full max-w-[420px] p-4 border border-slate-100 rounded"
-          >
-            <div>{TICKET_ICONS[ticket.status]}</div>
-            <h3 className="text-lg font-semibold truncate">{ticket.title}</h3>
-            <p
-              className={cn("text-sm text-slate-500 truncate", {
-                "line-through": ticket.status === "DONE",
-              })}
-            >
-              {ticket.content}
-            </p>
-            <Link href={ticketPath(ticket.id)} className="text-sm underline">
-              View
-            </Link>
-          </div>
+          <Card key={ticket.id} className="w-full max-w-[420px]">
+            <CardHeader>
+              <CardTitle className="flex align-middle gap-x-2">
+                <span className="flex align-middle w-4 h-4">
+                  {TICKET_ICONS[ticket.status]}
+                </span>
+                <h3 className="truncate">{ticket.title}</h3>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="line-clamp-3 whitespace-break-spaces">
+                {ticket.content}
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Link href={ticketPath(ticket.id)} className="text-sm underline">
+                View
+              </Link>
+            </CardFooter>
+          </Card>
         ))}
       </div>
     </div>
