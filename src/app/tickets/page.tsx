@@ -5,6 +5,7 @@ import { TicketList } from "@/features/ticket/components/ticket-list";
 
 // Exmaple of dynamic route rendering
 // export const dynamic = "force-dynamic";
+// export const revalidate = 5; (every 5 seconds)
 
 const TicketsPage = async () => {
   return (
