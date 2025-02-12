@@ -1,3 +1,5 @@
+"use server";
+
 import { cookies } from "next/headers";
 
 export const getCookieByKey = async (key: string) => {
@@ -16,4 +18,12 @@ export const setCookieByKey = async (key: string, value: string) => {
 
 export const deleteCookieByKey = async (key: string) => {
   (await cookies()).delete(key);
+};
+
+export const consumeCookiedByKey = async (key: string) => {
+  const message = await getCookieByKey(key);
+
+  await deleteCookieByKey(key);
+
+  return message;
 };
