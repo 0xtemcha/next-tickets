@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { initialTickets } from '@/data';
+import { cn } from '@/lib/utils';
 import { ticketPath } from '@/paths';
 
 const TICKET_ICONS = {
@@ -26,7 +27,11 @@ const TicketsPage = () => {
 					>
 						<div>{TICKET_ICONS[ticket.status]}</div>
 						<h3 className="truncate text-lg font-semibold">{ticket.title}</h3>
-						<p className="text-muted-foreground truncate text-sm">
+						<p
+							className={cn('text-muted-foreground truncate text-sm', {
+								'line-through': ticket.status === 'DONE',
+							})}
+						>
 							{ticket.content}
 						</p>
 						<Link href={ticketPath(ticket.id)} className="text-sm underline">
