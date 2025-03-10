@@ -1,12 +1,17 @@
+import {
+	LucideCircleCheckBig,
+	LucideSquarePen,
+	LucideStickyNote,
+} from 'lucide-react';
 import Link from 'next/link';
 import { initialTickets } from '@/data';
 import { cn } from '@/lib/utils';
 import { ticketPath } from '@/paths';
 
 const TICKET_ICONS = {
-	OPEN: 'O',
-	IN_PROGRESS: '>',
-	DONE: 'X',
+	OPEN: <LucideStickyNote />,
+	IN_PROGRESS: <LucideSquarePen />,
+	DONE: <LucideCircleCheckBig />,
 };
 
 const TicketsPage = () => {
